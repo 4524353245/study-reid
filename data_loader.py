@@ -30,8 +30,13 @@ class ImageDataset(Dataset):
     def __len__(self):
         return len(self.dataset)
     
-    def __getitem__(self,item):
-        
+    def __getitem__(self,index):
+        img_path, pid, camid = self.dataset[index]
+        img = read_img(img_path)
+        if self.transform is not None:
+            img = self.transform(img)
+        return img,pid,camid
+
 
         
 
@@ -41,3 +46,5 @@ img = Image.open(img_path).convert('RGB')
 
 if __name__ == '__main__':
     import data_manager
+    dataset = data_manager.init_img_dataset(root='')
+    train_loader = ImageDataset(dataset.train)
