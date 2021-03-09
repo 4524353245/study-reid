@@ -42,5 +42,15 @@ def main():
     else:
         print("Currently using CPU")
 
-    
+    dataset = data_manager.init_img_dataset(root=args.root,name=args.dataset,spilt_id=args.spilt_id,
+    cuhk03_labeled=args.cuhk03_labeled,cuhk03_classic_spilt=args.cuhk03_classic_spilt,)
+
+    # dataloader & augmentation train query gallery
+    transform_train = T.compose([
+        T.Random2DTranslation(args.height,args.width),
+        T.RandomHorizontalFlip(),
+        T.ToTensor(),
+        T.Normalize(mean=[0.485,0.456,0.406],std=[0.229,0.224,0.225]),
+        
+    ])
 
