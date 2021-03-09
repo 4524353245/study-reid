@@ -46,5 +46,5 @@ img = Image.open(img_path).convert('RGB')
 
 if __name__ == '__main__':
     import data_manager
-    dataset = data_manager.init_img_dataset(root='')
+    dataset = data_manager.init_img_dataset(root='C:\\Users\\surface\\Desktop')
     train_loader = ImageDataset(dataset.train)
